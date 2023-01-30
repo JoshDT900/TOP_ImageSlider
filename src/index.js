@@ -33,10 +33,8 @@ let navRender = (ele) => {
     gitImgEle.appendChild(gitTextEle);
     gitImgEle.appendChild(gitLogoEle);
 
-
     return ele;
 }
-
 
 (() => {
     pageRender();

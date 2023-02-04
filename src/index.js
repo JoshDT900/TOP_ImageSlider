@@ -54,6 +54,13 @@ let sliderEle = (ele) => {
     let imageObjArr = [...imageAssets.imgObj];
     genImg(imageObjArr, imgCntEle);
 
+    let rArrow = domEleGen.makeEle("div", "", ["class", "right_arrow"]);
+    slideWrap.appendChild(rArrow);
+
+    let rArrowArr = [["src", imageAssets.rightArrowImg], ["alt", "right arrow icon"]];
+    let rArrImg = domEleGen.makeEle("img", "", rArrowArr);
+    rArrow.appendChild(rArrImg);
+
     return slideWrap;
 }
 
@@ -62,7 +69,7 @@ let genImg = (arr, ele) => {
         let divArr = [];
 
         if (i == 0) {
-            divArr = [["class", `item_${i}`], ["style", "display: visible;"]];
+            divArr = [["class", `item_${i}`], ["style", "display: visible"]];
         } else {
             divArr = [["class", `item_${i}`], ["style", "display: none;"]];
         }
@@ -82,6 +89,7 @@ let genImg = (arr, ele) => {
         pEle.append(" on ");
         pEle.appendChild(pAncTwo);
         newDiv.appendChild(pEle)
+
         ele.appendChild(newDiv);
     }
 

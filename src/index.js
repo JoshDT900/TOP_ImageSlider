@@ -6,6 +6,7 @@ let pageRender = () => {
     let bodyEl = document.querySelector("body");
 
     navRender(bodyEl);
+    sliderEle(bodyEl);
 
     return bodyEl;
 }
@@ -34,6 +35,57 @@ let navRender = (ele) => {
     gitImgEle.appendChild(gitLogoEle);
 
     return ele;
+}
+
+let sliderEle = (ele) => {
+    let slideWrap = domEleGen.makeEle("div", "", ["class", "slider_wrap"]);
+    ele.appendChild(slideWrap);
+
+    let lArrow = domEleGen.makeEle("div", "", ["class", "left_arrow"]);
+    slideWrap.appendChild(lArrow);
+
+    let lArrowArr = [["src", imageAssets.leftArrowImg], ["alt", "left arrow icon"]];
+    let lArrImg = domEleGen.makeEle("img", "", lArrowArr);
+    lArrow.appendChild(lArrImg);
+
+    let imgCntEle = domEleGen.makeEle("div", "", ["class", "img_container"]);
+    slideWrap.appendChild(imgCntEle);
+
+    let imageObjArr = [...imageAssets.imgObj];
+    genImg(imageObjArr, imgCntEle);
+
+    return slideWrap;
+}
+
+let genImg = (arr, ele) => {
+    for (let i in arr){
+        let divArr = [];
+
+        if (i == 0) {
+            divArr = [["class", `item_${i}`], ["style", "display: visible;"]];
+        } else {
+            divArr = [["class", `item_${i}`], ["style", "display: none;"]];
+        }
+
+        let newDiv = domEleGen.makeEle("div", "", divArr);
+
+        let divImgArr = [["src", arr[i].img]];
+        let divImg = domEleGen.makeEle("img", "", divImgArr);
+        newDiv.appendChild(divImg);
+
+        let pAncArrOne = [["target", "_blank"], ["href", arr[i].link]]
+        let pAncArrTwo = [["target", "_blank"], ["href", arr[i].unsplash]]
+        let pAncOne = domEleGen.makeEle("a", arr[i].owner, pAncArrOne)
+        let pAncTwo = domEleGen.makeEle("a", "Unsplash", pAncArrTwo)
+        let pEle = domEleGen.makeEle("p", "Photo By ");
+        pEle.appendChild(pAncOne);
+        pEle.append(" on ");
+        pEle.appendChild(pAncTwo);
+        newDiv.appendChild(pEle)
+        ele.appendChild(newDiv);
+    }
+
+    return;
 }
 
 (() => {

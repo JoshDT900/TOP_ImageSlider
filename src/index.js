@@ -65,7 +65,7 @@ let sliderEle = (ele) => {
     lArrImg.addEventListener("click", prevImg);
     rArrImg.addEventListener("click", nextImg);
 
-    // setInterval(nextImg, 5000)
+    setInterval(nextImg, 5000)
 
     genBub(slideWrap);
 

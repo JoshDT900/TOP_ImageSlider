@@ -10,6 +10,8 @@ const domEleGen = (function() {
             return alert("Invalid Argument Type. The second argument must be a string");
         } else if (typeof(argArr[2]) != "object" && argArr.length === 3) {
             return alert("Invalid Arg. Third argument accepts an array or a nested array of arrays.");
+        } else if (argArr.length > 3) {
+            return alert("Too many arguments.")
         }
 
         let newEle = document.createElement(`${argArr[0]}`);

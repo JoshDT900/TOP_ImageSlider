@@ -48,26 +48,24 @@ let sliderEle = (ele) => {
     let lArrImg = domEleGen.makeEle("img", "", lArrowArr);
     lArrow.appendChild(lArrImg);
 
-    lArrImg.addEventListener("click", () => {
-        prevImg();
-    })
-
+    
     let imgCntEle = domEleGen.makeEle("div", "", ["class", "img_container"]);
     slideWrap.appendChild(imgCntEle);
-
+    
     let imageObjArr = [...imageAssets.imgObj];
     genImg(imageObjArr, imgCntEle);
-
+    
     let rArrow = domEleGen.makeEle("div", "", ["class", "right_arrow"]);
     slideWrap.appendChild(rArrow);
-
+    
     let rArrowArr = [["src", imageAssets.rightArrowImg], ["alt", "right arrow icon"]];
     let rArrImg = domEleGen.makeEle("img", "", rArrowArr);
     rArrow.appendChild(rArrImg);
+    
+    lArrImg.addEventListener("click", prevImg);
+    rArrImg.addEventListener("click", nextImg);
 
-    rArrImg.addEventListener("click", () => {
-        nextImg();
-    })
+    // setInterval(nextImg, 5000)
 
     genBub(slideWrap);
 
@@ -79,9 +77,9 @@ let genImg = (arr, ele) => {
         let divArr = [];
 
         if (i == 0) {
-            divArr = [["class", `item_${i}`], ["style", "display: visible"]];
+            divArr = [["class", `show`]];
         } else {
-            divArr = [["class", `item_${i}`], ["style", "display: none;"]];
+            divArr = [["class", `hide`]];
         }
 
         let newDiv = domEleGen.makeEle("div", "", divArr);

@@ -37,7 +37,7 @@ let getStart = (ele) => {
     let startingPoint = 0;
 
     for (let i = 0; i < tarEle.children.length; i++){
-        if (tarEle.children[i].style.display !== "none"){
+        if (tarEle.children[i].classList.value !== "hide"){
             startingPoint = i;
         }
     }
@@ -49,28 +49,34 @@ let nextImg = () => {
     let imgCnt = document.querySelector(".img_container");
     let curImgNum = getStart(imgCnt);
 
-    imgCnt.children[curImgNum].style.display = "none";
+    imgCnt.children[curImgNum].classList = 'hide';
 
     if (curImgNum + 1 >= imgCnt.children.length) {
         curImgNum = 0;
-        imgCnt.children[curImgNum].style.display = "";
+        imgCnt.children[curImgNum].classList = "show";
     } else {
-        imgCnt.children[curImgNum + 1].style.display = "";
-    } 
+        imgCnt.children[curImgNum + 1].classList = "show";
+    }
+
+    return;
 }
 
 let prevImg = () => {
     let imgCnt = document.querySelector(".img_container");
+    console.log(imgCnt);
     let curImgNum = getStart(imgCnt);
+    console.log(curImgNum);
 
-    imgCnt.children[curImgNum].style.display = "none";
+    imgCnt.children[curImgNum].classList = 'hide';
 
     if (curImgNum - 1 === -1) {
         curImgNum = 4;
-        imgCnt.children[curImgNum].style.display = "";
+        imgCnt.children[curImgNum].classList = "show";
     } else {
-        imgCnt.children[curImgNum - 1].style.display = "";
-    } 
+        imgCnt.children[curImgNum - 1].classList = "show";
+    }
+
+    return;
 }
 
 export { domEleGen, nextImg, prevImg }

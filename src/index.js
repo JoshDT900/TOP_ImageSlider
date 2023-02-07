@@ -1,6 +1,6 @@
 import css from "./style.css"
 import { imageAssets } from "./assets.js"
-import { domEleGen } from "./funcs.js";
+import { domEleGen, nextImg, prevImg } from "./funcs.js";
 
 let pageRender = () => {
     let bodyEl = document.querySelector("body");
@@ -48,6 +48,10 @@ let sliderEle = (ele) => {
     let lArrImg = domEleGen.makeEle("img", "", lArrowArr);
     lArrow.appendChild(lArrImg);
 
+    lArrImg.addEventListener("click", () => {
+        prevImg();
+    })
+
     let imgCntEle = domEleGen.makeEle("div", "", ["class", "img_container"]);
     slideWrap.appendChild(imgCntEle);
 
@@ -60,6 +64,10 @@ let sliderEle = (ele) => {
     let rArrowArr = [["src", imageAssets.rightArrowImg], ["alt", "right arrow icon"]];
     let rArrImg = domEleGen.makeEle("img", "", rArrowArr);
     rArrow.appendChild(rArrImg);
+
+    rArrImg.addEventListener("click", () => {
+        nextImg();
+    })
 
     genBub(slideWrap);
 

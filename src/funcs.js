@@ -32,4 +32,45 @@ const domEleGen = (function() {
     return { makeEle };
 })();
 
-export { domEleGen }
+let getStart = (ele) => {
+    let tarEle = ele;
+    let startingPoint = 0;
+
+    for (let i = 0; i < tarEle.children.length; i++){
+        if (tarEle.children[i].style.display !== "none"){
+            startingPoint = i;
+        }
+    }
+
+    return startingPoint;
+}
+
+let nextImg = () => {
+    let imgCnt = document.querySelector(".img_container");
+    let curImgNum = getStart(imgCnt);
+
+    imgCnt.children[curImgNum].style.display = "none";
+
+    if (curImgNum + 1 >= imgCnt.children.length) {
+        curImgNum = 0;
+        imgCnt.children[curImgNum].style.display = "";
+    } else {
+        imgCnt.children[curImgNum + 1].style.display = "";
+    } 
+}
+
+let prevImg = () => {
+    let imgCnt = document.querySelector(".img_container");
+    let curImgNum = getStart(imgCnt);
+
+    imgCnt.children[curImgNum].style.display = "none";
+
+    if (curImgNum - 1 === -1) {
+        curImgNum = 4;
+        imgCnt.children[curImgNum].style.display = "";
+    } else {
+        imgCnt.children[curImgNum - 1].style.display = "";
+    } 
+}
+
+export { domEleGen, nextImg, prevImg }

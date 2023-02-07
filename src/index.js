@@ -61,6 +61,8 @@ let sliderEle = (ele) => {
     let rArrImg = domEleGen.makeEle("img", "", rArrowArr);
     rArrow.appendChild(rArrImg);
 
+    genBub(slideWrap);
+
     return slideWrap;
 }
 
@@ -94,6 +96,28 @@ let genImg = (arr, ele) => {
     }
 
     return;
+}
+
+let genBub = (ele) => {
+    let bubEle = domEleGen.makeEle("div", "", ["class", "img_bubbles"]);
+    ele.appendChild(bubEle);
+
+    let imgContiner = document.querySelector(".img_container")
+    let imgCount = imgContiner.childNodes.length;
+    console.log("The image count is", imgCount);
+
+    for (let i = 0; i < imgCount; i++){
+        let imgSrc = imageAssets.bubbleFullImg;
+        
+        if (i > 0){
+            imgSrc = imageAssets.bubbleEmptyImg;
+        }
+        
+        let imgEle = domEleGen.makeEle("img", "", [["src", imgSrc], ["alt", "bubble for switching images"]])
+        bubEle.appendChild(imgEle)
+    }
+
+    return bubEle;
 }
 
 (() => {

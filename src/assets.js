@@ -15,7 +15,6 @@ const imageAssets = (function() {
     let bubbleFullImg = bubbleFull;
     let bubbleEmptyImg = bubbleEmpty;
     let gitImg = gitLogo;
-    let imgArr = [firstImg, secondImg, thirdImg, fourthImg, fifthImg];
 
     let imgObj = [
         {
@@ -51,7 +50,7 @@ const imageAssets = (function() {
     ]
 
 
-    return { leftArrowImg, rightArrowImg, bubbleEmptyImg, bubbleFullImg, gitImg, imgArr, imgObj };
+    return { leftArrowImg, rightArrowImg, bubbleEmptyImg, bubbleFullImg, gitImg, imgObj };
 })();
 
 export { imageAssets };

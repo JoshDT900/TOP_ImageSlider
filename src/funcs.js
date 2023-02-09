@@ -12,7 +12,7 @@ const domEleGen = (function() {
         } else if (typeof(argArr[2]) != "object" && argArr.length === 3) {
             return alert("Invalid Arg. Third argument accepts an array or a nested array of arrays.");
         } else if (argArr.length > 3) {
-            return alert("Too many arguments.")
+            return alert("Too many arguments.");
         }
 
         let newEle = document.createElement(`${argArr[0]}`);
@@ -50,14 +50,18 @@ let getStart = (ele) => {
 
 let nextImg = () => {
     let imgCnt = document.querySelector(".img_container");
+    let bubMain = document.querySelector(".img_bubbles");
     let curImgNum = getStart(imgCnt);
 
     imgCnt.children[curImgNum].classList = 'hide';
+    bubMain.children[curImgNum].src = imageAssets.bubbleEmptyImg;
 
     if (curImgNum + 1 >= imgCnt.children.length) {
         curImgNum = 0;
+        bubMain.children[curImgNum].src = imageAssets.bubbleFullImg;
         imgCnt.children[curImgNum].classList = "show";
     } else {
+        bubMain.children[curImgNum + 1].src = imageAssets.bubbleFullImg;
         imgCnt.children[curImgNum + 1].classList = "show";
     }
 
@@ -66,22 +70,26 @@ let nextImg = () => {
 
 let prevImg = () => {
     let imgCnt = document.querySelector(".img_container");
+    let bubMain = document.querySelector(".img_bubbles");
     let curImgNum = getStart(imgCnt);
 
     imgCnt.children[curImgNum].classList = 'hide';
+    bubMain.children[curImgNum].src = imageAssets.bubbleEmptyImg;
 
     if (curImgNum - 1 === -1) {
         curImgNum = 4;
+        bubMain.children[curImgNum].src = imageAssets.bubbleFullImg;
         imgCnt.children[curImgNum].classList = "show";
     } else {
         imgCnt.children[curImgNum - 1].classList = "show";
+        bubMain.children[curImgNum - 1].src = imageAssets.bubbleFullImg;
     }
 
     return;
 }
 
 let bubImgSwitch = (e) => {
-    let bubMain = document.querySelector(".img_bubbles")
+    let bubMain = document.querySelector(".img_bubbles");
 
     for (let i = 0; i < bubMain.children.length; i++){
         bubMain.childNodes[i].src = imageAssets.bubbleEmptyImg;
@@ -93,13 +101,12 @@ let bubImgSwitch = (e) => {
 }
 
 let bubPicSwitch = (e) => {
-    let bubMain = document.querySelector(".img_bubbles")
-    let imagesEle = document.querySelector(".img_container")
+    let bubMain = document.querySelector(".img_bubbles");
+    let imagesEle = document.querySelector(".img_container");
 
     for (let i = 0; i < bubMain.children.length; i++){
-        if (e.target.classList[0] === `item_${i}`){
-            console.log(e.target);
-            console.log(imagesEle.children[i].classList = "show");
+        if (e.target.classList[0] === `item_${i}`){            
+            imagesEle.children[i].classList = "show";
         } else {
             imagesEle.children[i].classList = "hide";
         }
@@ -109,11 +116,3 @@ let bubPicSwitch = (e) => {
 }
 
 export { domEleGen, nextImg, prevImg, bubImgSwitch, bubPicSwitch }
-
-/*
-
-Click on bubble
-    bubble changes icon
-
-
-*/

@@ -1,3 +1,4 @@
+import { imageAssets } from "./assets";
 
 const domEleGen = (function() {
 
@@ -65,9 +66,7 @@ let nextImg = () => {
 
 let prevImg = () => {
     let imgCnt = document.querySelector(".img_container");
-    console.log(imgCnt);
     let curImgNum = getStart(imgCnt);
-    console.log(curImgNum);
 
     imgCnt.children[curImgNum].classList = 'hide';
 
@@ -81,4 +80,40 @@ let prevImg = () => {
     return;
 }
 
-export { domEleGen, nextImg, prevImg }
+let bubImgSwitch = (e) => {
+    let bubMain = document.querySelector(".img_bubbles")
+
+    for (let i = 0; i < bubMain.children.length; i++){
+        bubMain.childNodes[i].src = imageAssets.bubbleEmptyImg;
+    }
+
+    e.target.src = imageAssets.bubbleFullImg;
+         
+    return;
+}
+
+let bubPicSwitch = (e) => {
+    let bubMain = document.querySelector(".img_bubbles")
+    let imagesEle = document.querySelector(".img_container")
+
+    for (let i = 0; i < bubMain.children.length; i++){
+        if (e.target.classList[0] === `item_${i}`){
+            console.log(e.target);
+            console.log(imagesEle.children[i].classList = "show");
+        } else {
+            imagesEle.children[i].classList = "hide";
+        }
+    }
+
+    return;
+}
+
+export { domEleGen, nextImg, prevImg, bubImgSwitch, bubPicSwitch }
+
+/*
+
+Click on bubble
+    bubble changes icon
+
+
+*/

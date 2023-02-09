@@ -1,6 +1,6 @@
 import css from "./style.css"
 import { imageAssets } from "./assets.js"
-import { domEleGen, nextImg, prevImg } from "./funcs.js";
+import { domEleGen, nextImg, prevImg, bubImgSwitch, bubPicSwitch } from "./funcs.js";
 
 let pageRender = () => {
     let bodyEl = document.querySelector("body");
@@ -119,7 +119,13 @@ let genBub = (ele) => {
             imgSrc = imageAssets.bubbleEmptyImg;
         }
         
-        let imgEle = domEleGen.makeEle("img", "", [["src", imgSrc], ["alt", "bubble for switching images"]])
+        let imgEle = domEleGen.makeEle("img", "", [["src", imgSrc], ["alt", "bubble for switching images"], ["class", `item_${i}`]])
+
+        imgEle.addEventListener("click", (e) => {
+            bubImgSwitch(e);
+            bubPicSwitch(e);
+        })
+
         bubEle.appendChild(imgEle)
     }
 

@@ -108,7 +108,9 @@ body {
 }
 
 .img_container div.hide,
-.img_container div.hide > img{
+.img_container div.hide > img,
+.img_container div.hide > p,
+.img_container div.hide > p a{
     grid-row: 2/3;
     grid-column: 1/2;
     opacity: 0;
